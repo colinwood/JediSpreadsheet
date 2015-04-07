@@ -1,0 +1,11 @@
+C:\Users\Namgi\Documents\CS3505-Software Practice\Project#2\JediSpreadsheet\Client\Spreadsheet\bin\Debug\Spreadsheet.XML
+C:\Users\Namgi\Documents\CS3505-Software Practice\Project#2\JediSpreadsheet\Client\Spreadsheet\bin\Debug\Spreadsheet.dll
+C:\Users\Namgi\Documents\CS3505-Software Practice\Project#2\JediSpreadsheet\Client\Spreadsheet\bin\Debug\Spreadsheet.pdb
+C:\Users\Namgi\Documents\CS3505-Software Practice\Project#2\JediSpreadsheet\Client\Spreadsheet\bin\Debug\Formula.dll
+C:\Users\Namgi\Documents\CS3505-Software Practice\Project#2\JediSpreadsheet\Client\Spreadsheet\bin\Debug\SpreadsheetPanel.dll
+C:\Users\Namgi\Documents\CS3505-Software Practice\Project#2\JediSpreadsheet\Client\Spreadsheet\bin\Debug\SpreadsheetUtilities.dll
+C:\Users\Namgi\Documents\CS3505-Software Practice\Project#2\JediSpreadsheet\Client\Spreadsheet\bin\Debug\Formula.xml
+C:\Users\Namgi\Documents\CS3505-Software Practice\Project#2\JediSpreadsheet\Client\Spreadsheet\bin\Debug\SpreadsheetPanel.xml
+C:\Users\Namgi\Documents\CS3505-Software Practice\Project#2\JediSpreadsheet\Client\Spreadsheet\bin\Debug\SpreadsheetUtilities.xml
+C:\Users\Namgi\Documents\CS3505-Software Practice\Project#2\JediSpreadsheet\Client\Spreadsheet\obj\Debug\Spreadsheet.dll
+C:\Users\Namgi\Documents\CS3505-Software Practice\Project#2\JediSpreadsheet\Client\Spreadsheet\obj\Debug\Spreadsheet.pdb
