@@ -13,7 +13,7 @@ namespace SS
     /// </summary>
     class Cell
     {
-        // surt for cell
+        // Deleted this
         private String name;
         private Object content;
         private Object value;
