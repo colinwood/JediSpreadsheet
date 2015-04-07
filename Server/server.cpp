@@ -29,9 +29,11 @@ int main(int argc, char *argv[])
          exit(1);
      }
      sockfd = socket(AF_INET, SOCK_STREAM, 0);
+
      if (sockfd < 0) 
         error("ERROR opening socket");
-     bzero((char *) &serv_addr, sizeof(serv_addr));
+
+     bzero((char *) &serv_addr, sizeof(serv_addr)); //Zero out the buffer
      portno = atoi(argv[1]);
      serv_addr.sin_family = AF_INET;
      serv_addr.sin_addr.s_addr = INADDR_ANY;
@@ -67,6 +69,7 @@ int main(int argc, char *argv[])
  *****************************************/
 void dostuff (int sock)
 {
+   printf("Client has connected and might be a jedi. Watch Out!")
    int n;
    char buffer[256];
       
