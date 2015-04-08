@@ -33,10 +33,23 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Formula">
-      <HintPath>..\Resources\Libraries\Formula.dll</HintPath>
+      <HintPath>..\..\..\JediSpreadsheet-master\JediSpreadsheet-master\SpreadsheetGUI\bin\Debug\Formula.dll</HintPath>
+    </Reference>
+    <Reference Include="Spreadsheet">
+      <HintPath>..\..\..\JediSpreadsheet-master\JediSpreadsheet-master\SpreadsheetGUI\bin\Debug\Spreadsheet.dll</HintPath>
     </Reference>
     <Reference Include="SpreadsheetPanel">
+<<<<<<< HEAD
       <HintPath>..\..\Resources\Libraries\SpreadsheetPanel.dll</HintPath>
+=======
+      <HintPath>..\..\..\JediSpreadsheet-master\JediSpreadsheet-master\SpreadsheetGUI\bin\Debug\SpreadsheetPanel.dll</HintPath>
+    </Reference>
+    <Reference Include="SpreadsheetUtilities">
+      <HintPath>..\..\..\JediSpreadsheet-master\JediSpreadsheet-master\SpreadsheetGUI\bin\Debug\SpreadsheetUtilities.dll</HintPath>
+    </Reference>
+    <Reference Include="StringSocket">
+      <HintPath>..\..\..\JediSpreadsheet-master\JediSpreadsheet-master\SpreadsheetGUI\bin\Debug\StringSocket.dll</HintPath>
+>>>>>>> origin/master
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -82,12 +95,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Spreadsheet\Spreadsheet.csproj">
-      <Project>{56eb475d-a2de-41a1-8206-095089aa8b1b}</Project>
-      <Name>Spreadsheet</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

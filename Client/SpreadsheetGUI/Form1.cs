@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using SS;
 using SpreadsheetUtilities;
 using System.Text.RegularExpressions;
+using System.Net.Sockets;
+using CustomNetworking;
 
 namespace SpreadsheetGUI
 {
@@ -18,18 +20,40 @@ namespace SpreadsheetGUI
     /// </summary>
     public partial class Form1 : Form
     {
+
+
+
+        public static void main()
+        {
+
+            Spreadsheet g = new Spreadsheet();
+
+
+            createSocket("155.98.111.62", 2120);
+
+
+        }
         // create my spreadsheet
-        private Spreadsheet myspreadsheet;   
+        private Spreadsheet myspreadsheet;
         // tracking filename
         private String recentName;
         // this is for cancel
         private Boolean seeyou = true;
+        private static StringSocket socket;
+        private Timer timer;
+        private bool timeStart;
+
 
         /// <summary>
         ///  basic form of myspreadsheet
         /// </summary>
         public Form1()
         {
+
+            timer = new Timer();
+            timer.Interval = 30000;
+            timer.Tick += timerFired;
+            timeStart = false;
             // initialize my spreadsheet
             InitializeComponent();
 
@@ -38,8 +62,8 @@ namespace SpreadsheetGUI
             // take a SpreadsheetPanel as its parameter and return nothing.  So we
             // register the displaySelection method below.
             spreadsheetPanel1.SelectionChanged += displaySelection;
-            spreadsheetPanel1.SetSelection(0,0);
-            
+            spreadsheetPanel1.SetSelection(0, 0);
+
             // A1 in the upper left and Z99 in the lower right. lower case to upper case and version is ps6
             string patt = @"^[A-Z][1-9][0-9]?$";
             myspreadsheet = new Spreadsheet(s => Regex.IsMatch(s, patt), s => s.ToUpper(), "ps6");
@@ -62,6 +86,62 @@ namespace SpreadsheetGUI
             this.Text = filename;
         }
 
+        public static bool createSocket(string ip, int port)
+        {
+            try
+            {
+                TcpClient spreadsheetClient = new TcpClient(ip, port);
+                socket = new StringSocket(spreadsheetClient.Client, ASCIIEncoding.Default);
+                return true;
+            }
+
+            catch (SocketException e)
+            {
+                return false;
+            }
+            // return false;
+        }
+
+        private void timerFired(object send, EventArgs e)
+        {
+            SaveSend();
+        }
+
+
+        private void receiveCallback(string s, Exception e, object payload)
+        {
+
+
+            //socket.BeginReceive();
+            //check the commands from the server
+
+            if (s != null)
+            {
+                //if (s=="ERROR")
+
+
+
+            }
+        }
+
+
+        // what else ? ?
+        public void UndoSend()
+        {
+            socket.BeginSend("UNDO " + "\n", (e, o) => { }, null);
+            socket.BeginReceive(receiveCallback, null);
+
+        }
+
+
+        //fires the send every 30 secs i guess.....fack it's getting tedious lol xD 
+        public void SaveSend()
+        {
+
+            //todo: check the protocol. what does the save command again ??
+            socket.BeginSend("SAVE" + "\n", (e, o) => { }, null);
+            socket.BeginReceive(receiveCallback, null);
+        }
         /// <summary>
         ///  Every time the selection changes, this method is called with the
         ///  Spreadsheet as its parameter.  We display the current time in the cell.
@@ -190,7 +270,7 @@ namespace SpreadsheetGUI
                 else
                     saveDialog.AddExtension = false;
                 recentName = filename;
-                myspreadsheet.Save(filename);                
+                myspreadsheet.Save(filename);
                 this.Text = saveDialog.FileName;
             }
             else
@@ -213,7 +293,7 @@ namespace SpreadsheetGUI
             // pop up the open file dialog form exsising DLL.
             OpenFileDialog openDialog = new OpenFileDialog();
             openDialog.Filter = "Sprd Document (*.sprd)|*.sprd|All files(*.*)|*.*";
-            openDialog.Title = "0pen";           
+            openDialog.Title = "0pen";
             openDialog.InitialDirectory = @"C:\";
             int col, row;
 
@@ -236,7 +316,7 @@ namespace SpreadsheetGUI
                         openedForm.spreadsheetPanel1.SetSelection(col, row);
                         openedForm.displaySelection(spreadsheetPanel1);
                     }
-                    
+
                 }
                 catch (Exception er)
                 {
@@ -244,8 +324,8 @@ namespace SpreadsheetGUI
                     openedForm.Close();
                 }
             }
-            
-        }   
+
+        }
 
         /// <summary>
         ///  Deals with the Close menu
@@ -267,11 +347,11 @@ namespace SpreadsheetGUI
                     if (seeyou)
                         Close();
                     else
-                        seeyou = false;   
+                        seeyou = false;
                 }
                 else if (saveDialog == DialogResult.No)
                 {
-                    Close();   
+                    Close();
                 }
                 else if (saveDialog == DialogResult.Cancel)
                 {
@@ -378,14 +458,67 @@ namespace SpreadsheetGUI
                     saveToolStripMenuItem_Click(sender, e);
                     if (!seeyou)
                         seeyou = !seeyou;
-                }              
+                }
                 else if (dialog == DialogResult.Cancel)
                 {
                     if (e is FormClosingEventArgs)
                         ((FormClosingEventArgs)e).Cancel = true;
 
                 }
-            }            
-        }       
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CellContent_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void connectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //connect
+            Button b = (Button)sender;
+            createSocket(IP.Text, Convert.ToInt32(textBox2.Text));
+            UndoSend();
+            usetheForce();
+
+
+        }
+
+        public void usetheForce()
+        {
+            socket.BeginSend("USE THE FORCE " + "\n", (e, o) => { }, null);
+            socket.BeginReceive(receiveCallback, null);
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+
+
     }
 }
