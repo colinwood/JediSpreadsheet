@@ -9,3 +9,16 @@ C:\Users\Namgi\Documents\CS3505-Software Practice\Project#2\JediSpreadsheet\Clie
 C:\Users\Namgi\Documents\CS3505-Software Practice\Project#2\JediSpreadsheet\Client\Spreadsheet\bin\Debug\SpreadsheetUtilities.xml
 C:\Users\Namgi\Documents\CS3505-Software Practice\Project#2\JediSpreadsheet\Client\Spreadsheet\obj\Debug\Spreadsheet.dll
 C:\Users\Namgi\Documents\CS3505-Software Practice\Project#2\JediSpreadsheet\Client\Spreadsheet\obj\Debug\Spreadsheet.pdb
+C:\Users\Aso\Desktop\JediSpreadsheet\Client\Spreadsheet\bin\Debug\Spreadsheet.XML
+C:\Users\Aso\Desktop\JediSpreadsheet\Client\Spreadsheet\bin\Debug\Spreadsheet.dll
+C:\Users\Aso\Desktop\JediSpreadsheet\Client\Spreadsheet\bin\Debug\Spreadsheet.pdb
+C:\Users\Aso\Desktop\JediSpreadsheet\Client\Spreadsheet\bin\Debug\Formula.dll
+C:\Users\Aso\Desktop\JediSpreadsheet\Client\Spreadsheet\bin\Debug\SpreadsheetPanel.dll
+C:\Users\Aso\Desktop\JediSpreadsheet\Client\Spreadsheet\bin\Debug\SpreadsheetUtilities.dll
+C:\Users\Aso\Desktop\JediSpreadsheet\Client\Spreadsheet\bin\Debug\Formula.xml
+C:\Users\Aso\Desktop\JediSpreadsheet\Client\Spreadsheet\bin\Debug\SpreadsheetPanel.xml
+C:\Users\Aso\Desktop\JediSpreadsheet\Client\Spreadsheet\bin\Debug\SpreadsheetUtilities.xml
+C:\Users\Aso\Desktop\JediSpreadsheet\Client\Spreadsheet\obj\Debug\Spreadsheet.csprojResolveAssemblyReference.cache
+C:\Users\Aso\Desktop\JediSpreadsheet\Client\Spreadsheet\obj\Debug\Spreadsheet.dll
+C:\Users\Aso\Desktop\JediSpreadsheet\Client\Spreadsheet\obj\Debug\Spreadsheet.pdb
+C:\Users\Aso\Desktop\JediSpreadsheet\Client\Spreadsheet\bin\Debug\StringSocket.dll
