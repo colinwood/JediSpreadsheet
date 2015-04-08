@@ -1,0 +1,5 @@
+C:\Users\Namgi\Documents\CS3505-Software Practice\Project#2\JediSpreadsheet\Client\SpreadsheetGUI\bin\Debug\SpreadsheetGUI.exe.config
+C:\Users\Namgi\Documents\CS3505-Software Practice\Project#2\JediSpreadsheet\Client\SpreadsheetGUI\obj\Debug\SpreadsheetGUI.csprojResolveAssemblyReference.cache
+C:\Users\Namgi\Documents\CS3505-Software Practice\Project#2\JediSpreadsheet\Client\SpreadsheetGUI\obj\Debug\SpreadsheetGUI.Form1.resources
+C:\Users\Namgi\Documents\CS3505-Software Practice\Project#2\JediSpreadsheet\Client\SpreadsheetGUI\obj\Debug\SpreadsheetGUI.Properties.Resources.resources
+C:\Users\Namgi\Documents\CS3505-Software Practice\Project#2\JediSpreadsheet\Client\SpreadsheetGUI\obj\Debug\SpreadsheetGUI.csproj.GenerateResource.Cache
