@@ -14,33 +14,40 @@ namespace Spreadsheet
     {
         //Our socket
         public Socket workSocket = null;
-        //Received buffer, we're assuming it's 256 bytes.
-        public byte[] buffer = new Byte[256];
+        //Received buffer, we're assuming it's 1024 bytes.
+        public byte[] buffer = new Byte[1024];
         //Received data string
         public StringBuilder sb = new StringBuilder();
     }
 
     public class Client
     {
-        public static void StartClient()
+
+        static Socket user;
+        public static void StartClient(string inputIP)
         {
             byte[] bytes = new byte[1024];
 
             try
             {
-                IPHostEntry ipHostInfo = Dns.Resolve(Dns.GetHostName());
-                IPAddress ipAddress = ipHostInfo.AddressList[0];
+                //IPHostEntry ipHostInfo = Dns.Resolve(Dns.GetHostName());
+                //IPAddress ipAddress = ipHostInfo.AddressList[0];
+                //IPEndPoint remoteEP = new IPEndPoint(ipAddress, 2120);
+
+                IPAddress ipAddress = IPAddress.Parse(inputIP);
                 IPEndPoint remoteEP = new IPEndPoint(ipAddress, 2120);
 
-                Socket sender = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                user = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 try
                 {
-                    sender.Connect(remoteEP);
+                    user.Connect(remoteEP);
 
-                    Console.WriteLine("Connection!!", sender.RemoteEndPoint.ToString());
+                    Console.WriteLine("Connection!!", user.RemoteEndPoint.ToString());
 
-                    sender.Shutdown(SocketShutdown.Both);
-                    sender.Close();
+                    Receive();
+
+                    //sender.Shutdown(SocketShutdown.Both);
+                    //sender.Close();
                 
                 }
                 catch(ArgumentException ae)
@@ -69,7 +76,7 @@ namespace Spreadsheet
         }
 
         //Filter through which all messages sent to the Server should go.
-        public static void Send(Socket user, String data)
+        public static void Send(String data)
         {
             byte[] converted_data = Encoding.ASCII.GetBytes(data);
 
@@ -86,14 +93,14 @@ namespace Spreadsheet
 
         }
 
-        public static void Receive(Socket user)
+        public static void Receive()
         {
             try
             {
                 StateObject state = new StateObject();
                 state.workSocket = user;
 
-                user.BeginReceive(state.buffer, 0, 256, 0, new AsyncCallback(Receive_callback), state);
+                user.BeginReceive(state.buffer, 0, 1024, 0, new AsyncCallback(Receive_callback), state);
             }
             catch (Exception e)
             {
@@ -110,7 +117,6 @@ namespace Spreadsheet
             try
             {
                 StateObject state = (StateObject)result.AsyncState;
-                Socket user = state.workSocket;
 
                 int bytesread = user.EndReceive(result);
 
@@ -121,7 +127,7 @@ namespace Spreadsheet
                 {
                     state.sb.Append(Encoding.ASCII.GetString(state.buffer, 0, bytesread));
 
-                    user.BeginReceive(state.buffer, 0, 256, 0, new AsyncCallback(Receive_callback), state);
+                    user.BeginReceive(state.buffer, 0, 1024, 0, new AsyncCallback(Receive_callback), state);
                 }
                 else
                 {
@@ -147,7 +153,7 @@ namespace Spreadsheet
         public static void Connect(string client_name, string spreadsheet_name)
         {
             string connect_command = "connect " + client_name + " " + spreadsheet_name;
-            //Send(user, connect_command);
+            Send(connect_command);
         }
 
 
@@ -178,7 +184,7 @@ namespace Spreadsheet
             //Checked if the name was valid. Since it is, send it.
 
             string register_command = "register " + client_name;
-            //Send(user, register_command);
+            Send(register_command);
         }
 
 
@@ -188,7 +194,7 @@ namespace Spreadsheet
         {
             string cell_command = "cell " + cell_name + " " + cell_contents;
 
-            //Send(user, cell_command);
+            Send(cell_command);
         }
 
 
@@ -196,7 +202,7 @@ namespace Spreadsheet
         //This should never execute without having completed a Connect procedure.
         public static void Undo()
         {
-            //Send(user, "undo");
+            Send("undo");
         }
     }
 }
